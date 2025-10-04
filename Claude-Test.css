@@ -1,68 +1,68 @@
 /*
 =================================================================
-  DARKSKIES PROOF OF CONCEPT v1
-  Testing external CSS import on Chub character pages
+  DARKSKIES PROOF OF CONCEPT v1 - FIXED
 =================================================================
 */
 
-/* CSS Variables - Easy theming */
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+/* Wrapper section with CSS variables */
+.ds-sec {
   --accent: #ff6b9d;
   --ink: #e9edf5;
   --muted: #aab2bd;
   --panel: #151923;
   --font-heading: 'Anton', sans-serif;
+  position: relative;
+  overflow: visible !important;
 }
 
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
-/* Hide Chub's default elements */
+/* Hide Chub's default title/description */
 h3.ant-typography,
-h5.ant-typography,
-div.msg-mkdn-container:not(:has(.ds-card)) {
+h5.ant-typography {
   display: none !important;
 }
 
-/* Custom card container */
-.ds-card {
-  background: var(--panel);
-  padding: 24px;
-  margin: 24px 0;
-  border-left: 3px solid var(--accent);
-  position: relative;
+/* Custom card - more aggressive styling */
+.ds-sec .ds-card {
+  background: var(--panel) !important;
+  padding: 24px !important;
+  margin: 24px 0 !important;
+  border-left: 3px solid var(--accent) !important;
+  position: relative !important;
 }
 
-/* Custom title */
-.ds-title {
-  font-family: var(--font-heading), impact, sans-serif;
+/* Custom title - force override */
+.ds-sec .ds-title {
+  font-family: var(--font-heading), impact, sans-serif !important;
   font-size: clamp(36px, 6vw, 64px) !important;
   line-height: 1.1 !important;
   font-weight: 400 !important;
   color: var(--ink) !important;
-  margin: 0 0 12px !important;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin: 0 0 12px 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
 }
 
 /* Custom tagline */
-.ds-tagline {
+.ds-sec .ds-tagline {
   font-size: 16px !important;
   line-height: 1.6 !important;
   color: var(--muted) !important;
-  margin: 0 0 16px !important;
+  margin: 0 0 16px 0 !important;
 }
 
 /* Custom description */
-.ds-desc {
+.ds-sec .ds-desc {
   font-size: 15px !important;
   line-height: 1.7 !important;
   color: var(--ink) !important;
+  margin: 0 !important;
 }
 
-/* Simple button override */
+/* Button styling */
 button.ant-btn.ant-btn-primary {
-  background: var(--accent) !important;
+  background: var(--accent, #ff6b9d) !important;
   border: 2px solid #000 !important;
   color: #fff !important;
   font-weight: 700 !important;
@@ -79,6 +79,6 @@ button.ant-btn.ant-btn-primary:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.ds-card {
-  animation: fadeIn 0.6s ease-out;
+.ds-sec .ds-card {
+  animation: fadeIn 0.6s ease-out both;
 }

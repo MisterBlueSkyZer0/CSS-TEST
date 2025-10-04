@@ -1,0 +1,84 @@
+/*
+=================================================================
+  DARKSKIES PROOF OF CONCEPT v1
+  Testing external CSS import on Chub character pages
+=================================================================
+*/
+
+/* CSS Variables - Easy theming */
+:root {
+  --accent: #ff6b9d;
+  --ink: #e9edf5;
+  --muted: #aab2bd;
+  --panel: #151923;
+  --font-heading: 'Anton', sans-serif;
+}
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+/* Hide Chub's default elements */
+h3.ant-typography,
+h5.ant-typography,
+div.msg-mkdn-container:not(:has(.ds-card)) {
+  display: none !important;
+}
+
+/* Custom card container */
+.ds-card {
+  background: var(--panel);
+  padding: 24px;
+  margin: 24px 0;
+  border-left: 3px solid var(--accent);
+  position: relative;
+}
+
+/* Custom title */
+.ds-title {
+  font-family: var(--font-heading), impact, sans-serif;
+  font-size: clamp(36px, 6vw, 64px) !important;
+  line-height: 1.1 !important;
+  font-weight: 400 !important;
+  color: var(--ink) !important;
+  margin: 0 0 12px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Custom tagline */
+.ds-tagline {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  color: var(--muted) !important;
+  margin: 0 0 16px !important;
+}
+
+/* Custom description */
+.ds-desc {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: var(--ink) !important;
+}
+
+/* Simple button override */
+button.ant-btn.ant-btn-primary {
+  background: var(--accent) !important;
+  border: 2px solid #000 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  transition: transform 0.2s !important;
+}
+
+button.ant-btn.ant-btn-primary:hover {
+  transform: translateY(-2px) !important;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ds-card {
+  animation: fadeIn 0.6s ease-out;
+}

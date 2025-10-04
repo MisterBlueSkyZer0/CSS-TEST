@@ -1,39 +1,45 @@
 /*
 =================================================================
-  DARKSKIES PROOF OF CONCEPT v1 - FIXED
+  DARKSKIES PROOF OF CONCEPT v2 - AGGRESSIVE
 =================================================================
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
-/* Wrapper section with CSS variables */
-.ds-sec {
+/* Wrapper section */
+section.ds-sec {
   --accent: #ff6b9d;
   --ink: #e9edf5;
   --muted: #aab2bd;
   --panel: #151923;
   --font-heading: 'Anton', sans-serif;
-  position: relative;
+  position: relative !important;
   overflow: visible !important;
 }
 
-/* Hide Chub's default title/description */
-h3.ant-typography,
-h5.ant-typography {
+/* Hide Chub's default elements - AGGRESSIVE */
+.msg-mkdn-container.font-size-message h3.ant-typography,
+.msg-mkdn-container.font-size-message h5.ant-typography,
+.msg-mkdn-container.font-size-message > h3:first-child,
+.msg-mkdn-container.font-size-message > h5:first-child {
   display: none !important;
 }
 
-/* Custom card - more aggressive styling */
-.ds-sec .ds-card {
+/* Card with aggressive specificity */
+.msg-mkdn-container.font-size-message .ds-sec .ds-card,
+section.ds-sec .ds-card {
   background: var(--panel) !important;
   padding: 24px !important;
   margin: 24px 0 !important;
   border-left: 3px solid var(--accent) !important;
   position: relative !important;
+  display: block !important;
 }
 
-/* Custom title - force override */
-.ds-sec .ds-title {
+/* Title - FORCE override */
+.msg-mkdn-container.font-size-message .ds-sec .ds-title,
+section.ds-sec .ds-title,
+.ds-sec h1.ds-title {
   font-family: var(--font-heading), impact, sans-serif !important;
   font-size: clamp(36px, 6vw, 64px) !important;
   line-height: 1.1 !important;
@@ -42,43 +48,46 @@ h5.ant-typography {
   margin: 0 0 12px 0 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
+  max-width: 100% !important;
+  width: 100% !important;
 }
 
-/* Custom tagline */
-.ds-sec .ds-tagline {
+/* Tagline */
+.msg-mkdn-container.font-size-message .ds-sec .ds-tagline,
+section.ds-sec .ds-tagline,
+.ds-sec p.ds-tagline {
   font-size: 16px !important;
   line-height: 1.6 !important;
   color: var(--muted) !important;
   margin: 0 0 16px 0 !important;
+  max-width: 100% !important;
 }
 
-/* Custom description */
-.ds-sec .ds-desc {
+/* Description */
+.msg-mkdn-container.font-size-message .ds-sec .ds-desc,
+section.ds-sec .ds-desc,
+.ds-sec p.ds-desc {
   font-size: 15px !important;
   line-height: 1.7 !important;
   color: var(--ink) !important;
   margin: 0 !important;
+  max-width: 100% !important;
 }
 
-/* Button styling */
-button.ant-btn.ant-btn-primary {
-  background: var(--accent, #ff6b9d) !important;
-  border: 2px solid #000 !important;
-  color: #fff !important;
-  font-weight: 700 !important;
-  transition: transform 0.2s !important;
-}
-
-button.ant-btn.ant-btn-primary:hover {
-  transform: translateY(-2px) !important;
-}
-
-/* Fade in animation */
+/* Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .ds-sec .ds-card {
-  animation: fadeIn 0.6s ease-out both;
+  animation: fadeIn 0.6s ease-out both !important;
+}
+
+/* Button override */
+button.ant-btn.ant-btn-primary {
+  background: var(--accent, #ff6b9d) !important;
+  border: 2px solid #000 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
 }

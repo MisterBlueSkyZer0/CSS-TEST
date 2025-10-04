@@ -1,0 +1,206 @@
+/*
+=================================================================
+  BUNNYUI V4 THEME STYLESHEET — BIOLUMINESCENT ABYSS v1.0
+  Aesthetic: Deep-sea noir, teal bioluminescence, caustic shimmer
+=================================================================
+*/
+
+/* 1) Font imports — distinct from your prior sets */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Inter:wght@400;600&display=swap');
+
+/* 2) Root tokens (theme defaults). Per-character overrides come from Notes. */
+:root {
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-flavor: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+  --abyss-ink: #d7eef0;   /* readable ink over navy */
+  --abyss-muted: #9ec7c9; /* secondary labels */
+  --abyss-bg: #07121a;    /* deep navy */
+  --abyss-panel: #0b1b25; /* card/panel */
+  --accent: #5cf2d6;      /* biolume teal */
+
+  --hero: none;           /* replaced from Notes */
+}
+
+/* 3) Page background + top banner (uses --hero via Notes) */
+body,
+.ant-layout,
+.ant-layout-content {
+  background: var(--abyss-bg) !important;
+}
+
+/* Soft caustic top band + hero parallax */
+body::before {
+  content: "";
+  position: fixed; inset: 0 auto auto 0;
+  width: 100%;
+  height: min(46vh, 540px);
+  background:
+    linear-gradient(180deg, rgba(7,18,26,0) 0%, rgba(7,18,26,0.65) 62%, var(--abyss-bg) 100%),
+    var(--hero) center bottom/cover no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, black 98%, transparent 100%);
+          mask-image: linear-gradient(to bottom, black 98%, transparent 100%);
+  pointer-events: none; z-index: 0;
+  animation: caustic-pan 28s ease-in-out infinite;
+  box-shadow: 0 2px 2px 0 var(--abyss-bg), 0 3px 3px 0 var(--abyss-bg), inset 0 -6px 12px -6px var(--abyss-bg);
+}
+
+/* Subtle particulate drift layer */
+body::after {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 1;
+  background-image:
+    radial-gradient(rgba(92,242,214,0.08) 1.5px, transparent 1.6px),
+    radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1.1px);
+  background-size: 32px 32px, 22px 22px;
+  animation: drift 60s linear infinite;
+  opacity: .4;
+}
+
+/* 4) Core blocks */
+.bb-sec {
+  --ink: var(--abyss-ink);
+  --muted: var(--abyss-muted);
+  font-family: var(--font-flavor);
+  position: relative;
+  --gap: 20px;
+  --hero-over: clamp(80px, 10vw, 200px);
+  overflow: visible !important;
+}
+
+.bb-wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 8px; overflow: visible !important; }
+.bb-header { margin-bottom: 24px; }
+
+.bb-title {
+  font-family: var(--font-heading);
+  font-size: clamp(56px, 9vw, 120px) !important;
+  line-height: 1 !important;
+  font-weight: 400 !important;
+  color: var(--ink);
+  margin: 0 0 10px !important;
+  letter-spacing: .02em !important;
+  text-transform: uppercase;
+  animation: glow-pulse 3.2s ease-in-out infinite;
+}
+
+.bb-tagline {
+  font-size: clamp(18px, 1.8vw, 20px) !important;
+  line-height: 1.65 !important;
+  color: var(--ink);
+  max-width: 70ch;
+}
+
+.bb-intros {
+  background: var(--abyss-panel);
+  border-radius: 10px;
+  padding: clamp(16px, 2vw, 24px);
+  position: relative;
+  overflow: visible !important;
+}
+
+.bb-section-title {
+  font-family: var(--font-heading);
+  letter-spacing: .04em;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 400;
+  margin: 0 0 12px;
+  color: var(--ink);
+  display: flex; align-items: center; gap: .6em;
+}
+.bb-section-title::after {
+  content: "";
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  flex: 1 1 auto; opacity: .6;
+}
+
+/* 5) Chapters: abyss “slates” with biolume count */
+.bb-intro-list { list-style: none; padding: 0 !important; display: flex; flex-direction: column; gap: 0; }
+.bb-intro-list li {
+  position: relative;
+  counter-increment: scn;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+  color: var(--ink);
+  padding: 16px 16px 16px 84px;
+  border: 1px solid rgba(92,242,214,.16);
+  box-shadow: inset 0 0 24px rgba(0,0,0,.35);
+  transition: transform .35s ease, background .35s ease, box-shadow .35s ease;
+  overflow: hidden;
+}
+.bb-intro-list li + li { margin-top: -28px; }
+
+.bb-intro-list li::before {
+  content: counter(scn, decimal-leading-zero);
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-heading); font-size: 36px; letter-spacing: .06em;
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(92,242,214,.6);
+}
+
+/* background preview slab on hover */
+.bb-intro-list li::after {
+  content: "";
+  position: absolute; inset: 10px; top: 10px;
+  background-image: var(--bg-image);
+  background-size: cover; background-position: center;
+  opacity: 0; transition: opacity .4s ease, filter .4s ease;
+  filter: saturate(.8) contrast(1.1) brightness(1.15);
+  z-index: -1;
+}
+.bb-intro-list li:hover { transform: translateY(-2px); box-shadow: 0 18px 60px rgba(0,0,0,.35); }
+.bb-intro-list li:hover::after { opacity: .22; }
+
+/* Two-line meta above title text */
+.bb-chapter-meta {
+  display: block; font-size: .9em; color: var(--muted); margin-bottom: 2px;
+}
+
+/* 6) Presets + Support */
+.bb-support-title { font-family: var(--font-heading); color: var(--ink); font-size: 24px; font-weight: 400; margin: 0 0 12px; text-align: center !important; }
+
+.bb-support .bb-kbtn{
+  --ink: #031018; --paper: #e9edf5; --cta: var(--accent);
+  position: relative; display: inline-block !important; vertical-align: middle;
+  border-radius: 9999px; background: linear-gradient(180deg,#031018,#07202c);
+  color: #fff !important; text-decoration: none; font-weight: 700; font-family: var(--font-heading);
+  padding: .9rem 1.25rem; isolation: isolate; overflow: hidden;
+  border: 1px solid rgba(92,242,214,.3);
+  box-shadow: 0 6px 24px rgba(92,242,214,.08), inset 0 0 0 1px rgba(255,255,255,.06);
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+.bb-support .bb-kbtn::before{
+  content:""; position:absolute; inset:2px; border-radius:inherit;
+  background: radial-gradient(circle at 20% -20%, rgba(255,255,255,.35), transparent 40%),
+              linear-gradient(180deg, rgba(92,242,214,.28), transparent 60%);
+}
+.bb-support .bb-kbtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+
+/* 7) Right-side hero column image */
+.bbx-band {
+  --bleed: 520px; z-index: 10; display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start !important; position: relative !important;
+  margin-top: calc(-1*var(--bleed)) !important; padding-top: var(--bleed) !important;
+  overflow: visible !important;
+}
+.bbx-band::before{
+  content:""; position: absolute; left: calc(50% + 10px); right: 0; top: 0; bottom: 0;
+  background: var(--hero) center bottom / contain no-repeat;
+  pointer-events: none; z-index: 1; filter: drop-shadow(0 40px 80px rgba(0,0,0,.5));
+  animation: hero-rise 1.6s cubic-bezier(.25,1,.5,1) both;
+}
+
+/* 8) Ant/Chub safe-touch */
+button.ant-btn.ant-btn-primary { background: var(--accent) !important; color: #031018 !important; border: 1px solid rgba(0,0,0,.2) !important; }
+button.ant-btn:hover { filter: brightness(1.15); }
+.ant-layout-header { background: #031018 !important; }
+
+/* 9) Credit */
+.bunnyui-credit { position: fixed; left: 1.5rem; bottom: 1.5rem; z-index: 2147483647; font-family: monospace; font-size: .75rem; color: rgba(255,255,255,.6); text-decoration: none; }
+
+/* 10) Animations */
+@keyframes caustic-pan { 0%{background-position:center bottom, center bottom} 50%{background-position:center 30%} 100%{background-position:center bottom} }
+@keyframes drift { 0%{transform: translate3d(0,0,0)} 100%{transform: translate3d(-8%, -8%, 0)} }
+@keyframes hero-rise { 0%{ transform: translateY(60vh); opacity: 0; } 100%{ transform: translateY(0); opacity: 1; } }
+@keyframes glow-pulse { 0%,100%{ text-shadow: 0 0 6px rgba(92,242,214,.35)} 50%{ text-shadow: 0 0 22px rgba(92,242,214,.8)} }

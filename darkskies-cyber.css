@@ -1,0 +1,382 @@
+/*
+=================================================================
+  DARKSKIES CYBER THEME v1
+  Sci-fi/Cyberpunk aesthetic for Chub character pages
+=================================================================
+*/
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+/* THEME VARIABLES - Easy per-character customization */
+.ds-sec {
+  --accent: #00ffff;
+  --accent-glow: #00ffff;
+  --ink: #e0f7ff;
+  --muted: #7dd3fc;
+  --panel: #0a1628;
+  --panel-border: #1e3a5f;
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+  position: relative;
+  overflow: visible !important;
+  font-family: var(--font-body);
+}
+
+/* HIDE CHUB'S DEFAULT ELEMENTS */
+h3.ant-typography,
+h5.ant-typography,
+div.msg-mkdn-container:not(:has(.ds-sec)) {
+  display: none !important;
+}
+
+/* MAIN WRAPPER */
+.ds-wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 8px;
+  overflow: visible !important;
+}
+
+/* HEADER SECTION */
+.ds-header {
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.ds-category {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), transparent);
+  color: #000;
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  text-decoration: none;
+  margin-bottom: 16px;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  transition: all .3s;
+  border: 1px solid var(--accent);
+}
+
+.ds-category:hover {
+  background: var(--accent);
+  box-shadow: 0 0 20px var(--accent-glow);
+  transform: translateX(4px);
+}
+
+/* MAIN TITLE */
+.ds-title {
+  font-family: var(--font-heading) !important;
+  font-size: clamp(42px, 7vw, 80px) !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  color: var(--ink) !important;
+  margin: 0 0 16px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  text-shadow: 0 0 30px var(--accent-glow), 0 0 60px var(--accent-glow) !important;
+  position: relative !important;
+  max-width: 100% !important;
+}
+
+/* SUBTITLE */
+.ds-subtitle {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+  color: var(--accent) !important;
+  text-transform: uppercase !important;
+  letter-spacing: .2em !important;
+  margin-bottom: 20px !important;
+}
+
+/* TAGLINE */
+.ds-tagline {
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+  color: var(--muted) !important;
+  margin: 0 0 24px !important;
+  max-width: 100% !important;
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+}
+
+/* CARD CONTAINER */
+.ds-card {
+  background: var(--panel) !important;
+  border: 1px solid var(--panel-border) !important;
+  padding: 24px !important;
+  margin: 24px 0 !important;
+  position: relative !important;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)) !important;
+}
+
+.ds-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.ds-meta-hdr {
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.ds-note {
+  font-family: var(--font-body);
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  color: var(--ink) !important;
+}
+
+/* SCENARIO LIST */
+.ds-scenarios {
+  background: var(--panel) !important;
+  border: 1px solid var(--panel-border) !important;
+  padding: clamp(16px, 2vw, 24px) !important;
+  margin: 24px 0 !important;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)) !important;
+}
+
+.ds-section-title {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: .8em;
+}
+
+.ds-section-title::before {
+  content: "▶";
+  color: var(--accent);
+  font-size: 0.7em;
+}
+
+.ds-scenario-list {
+  margin: 0;
+  padding: 0 !important;
+  list-style: none;
+  counter-reset: scenario;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ds-scenario-list li {
+  counter-increment: scenario;
+  background: rgba(0, 255, 255, .03);
+  padding: 16px 16px 16px 70px;
+  border: 1px solid var(--panel-border);
+  position: relative;
+  transition: all .3s;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+}
+
+.ds-scenario-list li:hover {
+  background: rgba(0, 255, 255, .08);
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+
+.ds-scenario-list li::before {
+  content: counter(scenario, decimal-leading-zero);
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* POV BADGE */
+.pov-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #000;
+  padding: 4px 10px;
+  margin-right: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  vertical-align: middle;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+}
+
+/* PRESETS SECTION */
+.ds-presets {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  padding: clamp(16px, 2vw, 24px);
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ds-presets-label {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.ds-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ds-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, var(--accent), transparent);
+  color: #000;
+  text-decoration: none;
+  font: 700 11px/1 var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  border: 1px solid var(--accent);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+  transition: all .3s;
+}
+
+.ds-badge:hover {
+  background: var(--accent);
+  box-shadow: 0 0 20px var(--accent-glow);
+  transform: translateY(-2px);
+  color: #000;
+}
+
+/* SUPPORT SECTION */
+.ds-support {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  padding: clamp(20px, 3vw, 32px);
+  margin: 24px 0;
+  text-align: center;
+}
+
+.ds-support-title {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+.ds-kbtn {
+  display: inline-block;
+  padding: 16px 32px;
+  background: var(--accent);
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  transition: all .3s;
+  border: 2px solid var(--accent);
+}
+
+.ds-kbtn:hover {
+  background: transparent;
+  color: var(--accent);
+  box-shadow: 0 0 30px var(--accent-glow), inset 0 0 30px var(--accent-glow);
+  transform: scale(1.05);
+}
+
+.ds-credit {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 16px;
+}
+
+/* ANIMATIONS */
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 20px var(--accent-glow); }
+  50% { text-shadow: 0 0 40px var(--accent-glow), 0 0 60px var(--accent-glow); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.ds-header { animation: slideInLeft 0.6s ease-out; }
+.ds-card { animation: slideInLeft 0.7s ease-out; }
+.ds-scenarios { animation: slideInLeft 0.8s ease-out; }
+.ds-presets { animation: slideInLeft 0.9s ease-out; }
+.ds-support { animation: slideInLeft 1s ease-out; }
+
+/* BUTTON OVERRIDES */
+button.ant-btn.ant-btn-primary {
+  background: var(--accent, #00ffff) !important;
+  border: 2px solid var(--accent, #00ffff) !important;
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+  transition: all .3s;
+}
+
+button.ant-btn.ant-btn-primary:hover {
+  background: transparent !important;
+  color: var(--accent, #00ffff) !important;
+  box-shadow: 0 0 20px var(--accent-glow, #00ffff);
+}
+
+/* CREDIT LINK */
+.ds-ui-credit {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 999999;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.ds-ui-credit:hover {
+  color: var(--accent);
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .ds-scenario-list li {
+    padding-left: 60px;
+  }
+  
+  .ds-scenario-list li::before {
+    font-size: 24px;
+    left: 12px;
+  }
+}

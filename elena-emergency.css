@@ -1,0 +1,336 @@
+/*
+=================================================================
+  EMERGENCY SYSTEMS THEME - Component Library
+  For use with character-specific variables in Creator's Notes
+=================================================================
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+/* Main wrapper */
+.es-sec {
+  font-family: var(--font-body);
+  position: relative;
+  color: var(--text-primary);
+  overflow: visible !important;
+}
+
+.es-sec * {
+  box-sizing: border-box;
+}
+
+.es-wrap {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header Section */
+.es-header {
+  background: linear-gradient(135deg, var(--panel-dark) 0%, rgba(27, 38, 59, 0.6) 100%);
+  border: 1px solid var(--diagnostic-blue);
+  padding: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+
+.es-header::before {
+  content: "EMERGENCY PROTOCOL ACTIVE";
+  position: absolute;
+  top: -1px;
+  left: 20px;
+  background: var(--emergency-red);
+  color: #000;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  padding: 4px 12px;
+  font-family: var(--font-heading);
+}
+
+.es-header::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  background: var(--emergency-red);
+  border-radius: 50%;
+  animation: es-pulse 1.5s ease-in-out infinite;
+}
+
+.es-title {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 8vw, 72px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-shadow: 0 0 30px rgba(0, 180, 216, 0.4);
+}
+
+.es-role {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--diagnostic-blue);
+  margin: 0 0 20px 0;
+  font-weight: 700;
+}
+
+.es-description {
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Alert Panel */
+.es-alert {
+  background: rgba(230, 57, 70, 0.08);
+  border-left: 4px solid var(--emergency-red);
+  padding: 20px;
+  margin: 30px 0;
+}
+
+.es-alert-title {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--emergency-red);
+  margin: 0 0 12px 0;
+  font-weight: 900;
+}
+
+.es-alert-content {
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Protocol Section */
+.es-protocols {
+  background: linear-gradient(135deg, var(--panel-dark) 0%, rgba(27, 38, 59, 0.4) 100%);
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  padding: 30px;
+  margin: 30px 0;
+}
+
+.es-section-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--diagnostic-blue);
+  border-left: 4px solid var(--emergency-red);
+  padding-left: 12px;
+  margin: 0 0 24px 0;
+  font-weight: 700;
+}
+
+.es-protocol-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: protocol;
+}
+
+.es-protocol-item {
+  background: rgba(0, 180, 216, 0.06);
+  border-left: 2px solid var(--diagnostic-blue);
+  padding: 16px 20px 16px 110px;
+  margin-bottom: 12px;
+  position: relative;
+  counter-increment: protocol;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.es-protocol-item:hover {
+  background: rgba(0, 180, 216, 0.12);
+  border-left-color: var(--emergency-red);
+}
+
+.es-protocol-item::before {
+  content: "P-" counter(protocol, decimal-leading-zero);
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--diagnostic-blue);
+}
+
+.es-protocol-item::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--emergency-red);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.es-protocol-item.threat-critical::after {
+  animation: es-pulse 1s ease-in-out infinite;
+  opacity: 1;
+}
+
+.es-threat-badge {
+  display: inline-block;
+  background: rgba(230, 57, 70, 0.2);
+  border: 1px solid var(--emergency-red);
+  color: var(--emergency-red);
+  font-family: var(--font-heading);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  padding: 3px 10px;
+  margin-left: 12px;
+  text-transform: uppercase;
+}
+
+/* Manifest */
+.es-manifest {
+  background: rgba(13, 27, 42, 0.8);
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  padding: 24px;
+  margin: 30px 0;
+}
+
+.es-manifest-label {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.es-manifest-data {
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+}
+
+.es-manifest-data:last-child {
+  margin-bottom: 0;
+}
+
+.es-manifest-data strong {
+  color: var(--diagnostic-blue);
+  font-weight: 400;
+}
+
+.es-manifest-link {
+  color: var(--emergency-red);
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.es-manifest-link:hover {
+  color: var(--diagnostic-blue);
+}
+
+/* Support */
+.es-support {
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.1) 0%, transparent 100%);
+  border: 1px solid var(--emergency-red);
+  padding: 30px;
+  margin: 30px 0;
+  text-align: center;
+}
+
+.es-support-title {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0 0 20px 0;
+  font-weight: 700;
+}
+
+.es-support-btn {
+  display: inline-block;
+  background: var(--emergency-red);
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  text-decoration: none;
+  transition: all 0.3s;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+
+.es-support-btn:hover {
+  background: var(--diagnostic-blue);
+  transform: translateY(-2px);
+}
+
+.es-credit {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: 16px 0 0 0;
+}
+
+.es-credit a {
+  color: var(--emergency-red);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.es-credit a:hover {
+  color: var(--diagnostic-blue);
+}
+
+/* Animations */
+@keyframes es-pulse {
+  0%, 100% { 
+    opacity: 1;
+    box-shadow: 0 0 0 0 var(--emergency-red);
+  }
+  50% { 
+    opacity: 0.5;
+    box-shadow: 0 0 0 8px rgba(230, 57, 70, 0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .es-wrap {
+    padding: 20px 12px;
+  }
+  
+  .es-header,
+  .es-protocols {
+    padding: 20px 16px;
+  }
+  
+  .es-protocol-item {
+    padding: 14px 16px 14px 80px;
+  }
+  
+  .es-title {
+    font-size: clamp(32px, 10vw, 48px);
+  }
+}

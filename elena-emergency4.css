@@ -1,0 +1,357 @@
+/*
+=================================================================
+  DARKSKIES EMERGENCY SYSTEMS THEME
+  Dead Space meets Alien Isolation aesthetic
+=================================================================
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+/* THEME VARIABLES */
+.es-sec {
+  --accent: #e63946;
+  --accent-glow: #e63946;
+  --ink: #e0e1dd;
+  --muted: #778da9;
+  --panel: #1b263b;
+  --panel-border: #415a77;
+  --diagnostic-blue: #00b4d8;
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Share Tech Mono', monospace;
+  position: relative;
+  overflow: visible !important;
+  font-family: var(--font-body);
+}
+
+/* HIDE CHUB'S DEFAULT ELEMENTS */
+h3.ant-typography,
+h5.ant-typography,
+div.msg-mkdn-container:not(:has(.es-sec)) {
+  display: none !important;
+}
+
+/* MAIN WRAPPER */
+.es-wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 8px;
+  overflow: visible !important;
+}
+
+/* HEADER SECTION */
+.es-header {
+  margin-bottom: 32px;
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--diagnostic-blue);
+  padding: 30px;
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+
+.es-header::before {
+  content: "⚠️ EMERGENCY PROTOCOL ACTIVE";
+  position: absolute;
+  top: -1px;
+  left: 20px;
+  background: var(--accent);
+  color: #000;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  padding: 4px 12px;
+  font-family: var(--font-heading);
+}
+
+.es-header::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: es-pulse 1.5s ease-in-out infinite;
+}
+
+.es-category {
+  display: inline-block;
+  background: var(--accent);
+  color: #000;
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  text-decoration: none;
+  margin-bottom: 12px;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+
+/* MAIN TITLE */
+.es-title {
+  font-family: var(--font-heading) !important;
+  font-size: clamp(48px, 8vw, 72px) !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  color: var(--ink) !important;
+  margin: 0 0 12px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  text-shadow: 0 0 30px rgba(0, 180, 216, 0.4) !important;
+  max-width: 100% !important;
+}
+
+/* ROLE/SUBTITLE */
+.es-role {
+  font-family: var(--font-heading) !important;
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+  color: var(--diagnostic-blue) !important;
+  text-transform: uppercase !important;
+  letter-spacing: .2em !important;
+  margin-bottom: 20px !important;
+}
+
+/* TAGLINE */
+.es-tagline {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: var(--ink) !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+
+/* CARD CONTAINER */
+.es-card {
+  background: rgba(230, 57, 70, 0.08) !important;
+  border-left: 4px solid var(--accent) !important;
+  padding: 20px !important;
+  margin: 24px 0 !important;
+}
+
+.es-meta-hdr {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.es-note {
+  font-family: var(--font-body);
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: var(--ink) !important;
+}
+
+/* SCENARIO LIST */
+.es-scenarios {
+  background: var(--panel) !important;
+  border: 1px solid rgba(0, 180, 216, 0.3) !important;
+  padding: clamp(16px, 2vw, 30px) !important;
+  margin: 24px 0 !important;
+}
+
+.es-section-title {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700;
+  margin: 0 0 20px;
+  color: var(--diagnostic-blue);
+  letter-spacing: 0.12em;
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+}
+
+.es-scenario-list {
+  margin: 0;
+  padding: 0 !important;
+  list-style: none;
+  counter-reset: protocol;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.es-scenario-list li {
+  counter-increment: protocol;
+  background: rgba(0, 180, 216, 0.06);
+  padding: 16px 16px 16px 110px;
+  border-left: 2px solid var(--diagnostic-blue);
+  position: relative;
+  transition: all .3s;
+}
+
+.es-scenario-list li:hover {
+  background: rgba(0, 180, 216, 0.12);
+  border-left-color: var(--accent);
+}
+
+.es-scenario-list li::before {
+  content: "P-" counter(protocol, decimal-leading-zero);
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--diagnostic-blue);
+}
+
+.es-scenario-list li::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.es-scenario-list li.threat-critical::after {
+  animation: es-pulse 1s ease-in-out infinite;
+  opacity: 1;
+}
+
+/* THREAT BADGE */
+.es-threat-badge {
+  display: inline-block;
+  background: rgba(230, 57, 70, 0.2);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 3px 10px;
+  margin-left: 12px;
+  font-size: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  font-family: var(--font-heading);
+}
+
+/* MANIFEST */
+.es-manifest {
+  background: rgba(13, 27, 42, 0.8);
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  padding: 24px;
+  margin: 24px 0;
+}
+
+.es-manifest-label {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.es-manifest-data {
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+}
+
+.es-manifest-data:last-child {
+  margin-bottom: 0;
+}
+
+.es-manifest-data strong {
+  color: var(--diagnostic-blue);
+  font-weight: 400;
+}
+
+.es-manifest-link {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.es-manifest-link:hover {
+  color: var(--diagnostic-blue);
+}
+
+/* SUPPORT SECTION */
+.es-support {
+  background: var(--panel);
+  border: 1px solid var(--accent);
+  padding: clamp(20px, 3vw, 30px);
+  margin: 24px 0;
+  text-align: center;
+}
+
+.es-support-title {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.es-kbtn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: #000;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-family: var(--font-heading);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+  transition: all .3s;
+}
+
+.es-kbtn:hover {
+  background: var(--diagnostic-blue);
+  transform: translateY(-2px);
+}
+
+.es-credit {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 16px;
+}
+
+.es-credit a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ANIMATIONS */
+@keyframes es-pulse {
+  0%, 100% { 
+    opacity: 1;
+    box-shadow: 0 0 0 0 var(--accent);
+  }
+  50% { 
+    opacity: 0.5;
+    box-shadow: 0 0 0 8px rgba(230, 57, 70, 0);
+  }
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .es-scenario-list li {
+    padding-left: 80px;
+  }
+  
+  .es-scenario-list li::before {
+    font-size: 10px;
+    left: 12px;
+  }
+}
